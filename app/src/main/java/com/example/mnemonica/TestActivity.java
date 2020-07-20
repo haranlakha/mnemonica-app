@@ -13,7 +13,7 @@ import java.util.Random;
 /*
 card is shown on screen and input is asked.
 if input matches the position of shown card go to next random card.
-if not add 1 to counter trackingh wrong answers and go to next card.
+if not add 1 to counter tracking wrong answers and go to next card.
 NOTE
 the card displayed has to be removed from the selection of cards after each guess somehow. need to figure this out*/
 
@@ -25,6 +25,7 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         final TextView displayText = findViewById(R.id.displayText);
+        //tamariz stack array
         List<String> tamariz = Arrays.asList("4♣", "2♥", "7♦", "3♣", "4♥", "6♦", "A♠", "5♥", "9♠", "2♠", "Q♥", "3♦", "Q♣",
                 "8♥", "6♠", "5♠", "9♥", "K♣", "2♦", "J♥", "3♠", "8♠", "6♥", "10♣", "5♦", "K♦",
                 "2♣", "3♥", "8♦", "5♣", "K♠", "J♦", "8♣", "10♠", "K♥", "J♣", "7♠", "10♥", "A♦",
