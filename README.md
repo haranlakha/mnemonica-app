@@ -1,4 +1,4 @@
-# mnemonica-app
+# Mnemonica Training App
 
 This a Mnemonica training app to help you memorise the stack.
 
