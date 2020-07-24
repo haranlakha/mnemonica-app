@@ -36,17 +36,16 @@ public class TestActivity extends AppCompatActivity {
                             "4♠", "7♥", "4♦", "A♣", "9♣", "J♠", "Q♦", "7♣", "Q♠", "10♦", "6♣", "A♥", "9♦"};
         final List<String> stack = new LinkedList<>(Arrays.asList(tamariz));
 
-        int numbers[] ={1,2,3,4,5,6,7,8,9,10,
-                        11,12,13,14,15,16,17,18,19,20,
-                        21,22,23,24,25,26,27,28,29,30,
-                        31,32,33,34,35,36,37,38,39,40,
-                        41,42,43,44,45,46,47,48,49,50,
-                        51,52};
+        int[] numbers = new int[52];
+
+        for(int i = 0; i < numbers.length; i++){
+            numbers[i] = i+1;
+        }
 
         final ArrayList<Integer> position =new ArrayList<Integer>();
 
-        for (int i = 0; i <= numbers.length; i++){
-            position.add(i);
+        for (int j = 0; j <= numbers.length; j++){
+            position.add(j);
         }
 
         Random rand = new Random();
