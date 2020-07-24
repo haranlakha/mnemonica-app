@@ -44,7 +44,7 @@ public class TestActivity extends AppCompatActivity {
            Random rand2 = new Random();
             @Override
             public void onClick(View v) {
-                int random2 = rand2.nextInt(52);
+                int random2 = rand2.nextInt(stack.size());
                     displayText.setText(stack.get(random2));
 
             }
