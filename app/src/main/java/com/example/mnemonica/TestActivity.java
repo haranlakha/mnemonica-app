@@ -21,8 +21,6 @@ NOTE
 the card displayed has to be removed from the selection of cards after each guess somehow. need to figure this out*/
 
 public class TestActivity extends AppCompatActivity {
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,18 +36,18 @@ public class TestActivity extends AppCompatActivity {
         stack.addAll(tamariz);
 
         Random rand = new Random();
-        int random1 = rand.nextInt(52);
+        final int random1 = rand.nextInt(52);
         displayText.setText(stack.get(random1));
 
-        final EditText InputText = (EditText) findViewById(R.id.InputText);
         Button button = (Button)findViewById(R.id.btnEnterText);
-
+        
         button.setOnClickListener(new View.OnClickListener() {
-            Random rand2 = new Random();
+           Random rand2 = new Random();
             @Override
             public void onClick(View v) {
                 int random2 = rand2.nextInt(52);
-                displayText.setText(stack.get(random2));
+                    displayText.setText(stack.get(random2));
+
             }
         });
     }
