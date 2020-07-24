@@ -56,11 +56,12 @@ public class TestActivity extends AppCompatActivity {
         position.remove(random1);
 
         Button button = (Button)findViewById(R.id.btnEnterText);
-        
+
         button.setOnClickListener(new View.OnClickListener() {
            Random rand2 = new Random();
             @Override
             public void onClick(View v) {
+
                 int random2 = rand2.nextInt(stack.size());
                     displayText.setText(stack.get(random2));
                     stack.remove(random2);
