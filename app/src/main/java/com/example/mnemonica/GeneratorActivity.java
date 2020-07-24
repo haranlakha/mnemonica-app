@@ -12,6 +12,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+//this activity generates a random card and position. This is used for ACAAN effects.
+
 public class GeneratorActivity extends AppCompatActivity {
 
     @Override
@@ -33,8 +35,8 @@ public class GeneratorActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Random rand = new Random();
                 Random rand2 = new Random();
-                int randomNum1 = rand.nextInt(52);
-                int randomNum2 = rand2.nextInt(52);
+                int randomNum1 = rand.nextInt(stack.size());
+                int randomNum2 = rand2.nextInt(stack.size());
                 txtCard.setText(stack.get(randomNum1));
                 txtNum.setText(Integer.toString(randomNum2+1));
             }
