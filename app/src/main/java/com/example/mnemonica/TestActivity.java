@@ -3,7 +3,6 @@ package com.example.mnemonica;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,13 +13,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
-
-/*
-card is shown on screen and input is asked.
-if input matches the position of shown card go to next random card.
-if not add 1 to counter tracking wrong answers and go to next card.
-NOTE
-the card displayed has to be removed from the selection of cards after each guess somehow. need to figure this out*/
 
 public class TestActivity extends AppCompatActivity {
     @Override
