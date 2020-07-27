@@ -29,7 +29,7 @@ public class TestActivity extends AppCompatActivity {
         final List<String> stack = new LinkedList<>(Arrays.asList(tamariz));
 
         int[] numbers = new int[52];
-
+        //filling the numbers array
         for(int i = 0; i < numbers.length; i++){
             numbers[i] = i+1;
         }
