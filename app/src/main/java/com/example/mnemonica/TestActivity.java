@@ -15,6 +15,14 @@ import java.util.List;
 import java.util.Random;
 
 public class TestActivity extends AppCompatActivity {
+    //global variables
+    Button button;
+    EditText edit;
+    int textInt;
+    int random1;
+    int random2;
+    int count = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,23 +49,33 @@ public class TestActivity extends AppCompatActivity {
         }
 
         Random rand = new Random();
-        final int random1 = rand.nextInt(stack.size());
+        random1 = rand.nextInt(stack.size());
         displayText.setText(stack.get(random1));
         stack.remove(random1);
         position.remove(random1);
 
-        Button button = (Button)findViewById(R.id.btnEnterText);
+        edit = (EditText)findViewById(R.id.InputText);
+        button = (Button)findViewById(R.id.btnEnterText);
 
         button.setOnClickListener(new View.OnClickListener() {
            Random rand2 = new Random();
             @Override
             public void onClick(View v) {
 
-                int random2 = rand2.nextInt(stack.size());
-                    displayText.setText(stack.get(random2));
-                    stack.remove(random2);
-                    position.remove(random2);
+                String text = edit.getText().toString();
+                textInt = Integer.parseInt(text);
 
+                random2 = rand2.nextInt(stack.size());
+                displayText.setText(stack.get(random2));
+
+                stack.remove(random2);
+                position.remove(random2);
+
+                if (textInt == random1+1 || textInt == random2+1){
+                    count += 1;
+                }
+                edit.getText().clear();
+                
             }
         });
     }
