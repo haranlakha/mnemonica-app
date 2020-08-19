@@ -15,13 +15,14 @@
         android:ems="10"
         android:gravity="center"
         android:hint="Position"
-        android:inputType="textPersonName"
+        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.278"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.523" />
+        app:layout_constraintVertical_bias="0.523"
+        />
 
     <TextView
         android:id="@+id/displayText"
@@ -33,7 +34,8 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="0.2"
+        />
 
     <Button
         android:id="@+id/btnEnterText"
