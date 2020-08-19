@@ -3,10 +3,15 @@ package com.example.mnemonica;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,6 +30,7 @@ public class TestActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
@@ -57,8 +63,30 @@ public class TestActivity extends AppCompatActivity {
         edit = (EditText)findViewById(R.id.InputText);
         button = (Button)findViewById(R.id.btnEnterText);
 
+        button.setEnabled(false);
+
+        edit.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.toString().trim().length() == 0){
+                    button.setEnabled(false);
+                } else {
+                    button.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
         button.setOnClickListener(new View.OnClickListener() {
-           Random rand2 = new Random();
+            Random rand2 = new Random();
             @Override
             public void onClick(View v) {
 
@@ -75,7 +103,8 @@ public class TestActivity extends AppCompatActivity {
                     count += 1;
                 }
                 edit.getText().clear();
-                
+                button.setEnabled(false);
+
             }
         });
     }
