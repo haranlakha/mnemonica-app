@@ -64,12 +64,14 @@ public class TestActivity extends AppCompatActivity {
         button = (Button)findViewById(R.id.btnEnterText);
 
         button.setEnabled(false);
+        edit.setError("Cannot be empty");
 
         edit.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.toString().trim().length() == 0){
+                    edit.setError("Cannot be empty");
                     button.setEnabled(false);
                 } else {
                     button.setEnabled(true);
