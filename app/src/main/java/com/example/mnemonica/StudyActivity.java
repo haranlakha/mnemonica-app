@@ -1,6 +1,8 @@
 package com.example.mnemonica;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +26,11 @@ public class StudyActivity extends AppCompatActivity {
         textView.setText(tamariz[i]);
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+                    Intent intent = new Intent(StudyActivity.this, MainActivity.class);
                     i++;
+                    if(i > 51){
+                        startActivity(intent);
+                    }
                     textView.setText(tamariz[i]);
                 }
             });
