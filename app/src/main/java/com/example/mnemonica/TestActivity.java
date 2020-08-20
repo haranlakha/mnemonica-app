@@ -56,8 +56,8 @@ public class TestActivity extends AppCompatActivity {
         stack.remove(random1);
         position.remove(random1);
 
-        edit = (EditText)findViewById(R.id.InputText);
-        button = (Button)findViewById(R.id.btnEnterText);
+        edit = findViewById(R.id.InputText);
+        button = findViewById(R.id.btnEnterText);
 
         button.setEnabled(false);
         edit.setError("Cannot be empty");

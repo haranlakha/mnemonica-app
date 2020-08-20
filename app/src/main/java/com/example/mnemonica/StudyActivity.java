@@ -20,7 +20,7 @@ public class StudyActivity extends AppCompatActivity {
                 "2♣", "3♥", "8♦", "5♣", "K♠", "J♦", "8♣", "10♠", "K♥", "J♣", "7♠", "10♥", "A♦",
                 "4♠", "7♥", "4♦", "A♣", "9♣", "J♠", "Q♦", "7♣", "Q♠", "10♦", "6♣", "A♥", "9♦"};
 
-        Button button = (Button) findViewById(R.id.newCardbtn);
+        Button button = findViewById(R.id.newCardbtn);
         final TextView textView = findViewById(R.id.textView);
 
         textView.setText(tamariz[i]);

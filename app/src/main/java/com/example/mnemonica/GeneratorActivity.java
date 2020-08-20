@@ -26,7 +26,7 @@ public class GeneratorActivity extends AppCompatActivity {
         final List<String> stack = Arrays.asList(tamariz);
         final TextView txtCard = findViewById(R.id.textCard);
         final TextView txtNum = findViewById(R.id.textNum);
-        final Button button1 = (Button) findViewById(R.id.RandomButton);
+        final Button button1 = findViewById(R.id.RandomButton);
 
 
         button1.setOnClickListener(new View.OnClickListener() {
