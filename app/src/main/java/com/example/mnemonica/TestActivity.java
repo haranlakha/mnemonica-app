@@ -2,6 +2,7 @@ package com.example.mnemonica;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,6 +24,7 @@ public class TestActivity extends AppCompatActivity {
     int random1;
     int random2;
     int count = 0;
+    int totalCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +89,12 @@ public class TestActivity extends AppCompatActivity {
             Random rand2 = new Random();
             @Override
             public void onClick(View v) {
-
+                if(totalCount == 52){
+                    Intent intentResult = new Intent(TestActivity.this, ResultActivity.class);
+                    int value = count;
+                    intentResult.putExtra("val", value);
+                    startActivity(intentResult);
+                }
                 String text = edit.getText().toString();
                 textInt = Integer.parseInt(text);
 
@@ -102,6 +109,7 @@ public class TestActivity extends AppCompatActivity {
                 }
                 edit.getText().clear();
                 button.setEnabled(false);
+                totalCount +=1;
 
             }
         });

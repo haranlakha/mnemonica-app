@@ -26,10 +26,10 @@ public class StudyActivity extends AppCompatActivity {
         textView.setText(tamariz[i]);
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Intent intent = new Intent(StudyActivity.this, MainActivity.class);
+                    Intent intentMain = new Intent(StudyActivity.this, MainActivity.class);
                     i++;
                     if(i > 51){
-                        startActivity(intent);
+                        startActivity(intentMain);
                     }
                     textView.setText(tamariz[i]);
                 }

@@ -15,16 +15,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void goToStudyActivity (View view){
-        Intent intent = new Intent (this, StudyActivity.class);
-        startActivity(intent);
+        Intent intentStudy = new Intent (this, StudyActivity.class);
+        startActivity(intentStudy);
     }
     public void goToGenerator (View view){
-        Intent intent = new Intent (this, GeneratorActivity.class);
-        startActivity(intent);
+        Intent intentGenerator = new Intent (this, GeneratorActivity.class);
+        startActivity(intentGenerator);
     }
     public void goToTest (View view){
-        Intent intent = new Intent (this, TestActivity.class);
-        startActivity(intent);
+        Intent intentTest = new Intent (this, TestActivity.class);
+        startActivity(intentTest);
     }
 
 }
