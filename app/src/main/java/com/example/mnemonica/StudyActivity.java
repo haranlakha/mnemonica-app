@@ -8,10 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+
 public class StudyActivity extends AppCompatActivity {
+    Button button;
+    TextView textView;
     public static int i = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        i = 0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study);
 
@@ -20,19 +24,29 @@ public class StudyActivity extends AppCompatActivity {
                 "2♣", "3♥", "8♦", "5♣", "K♠", "J♦", "8♣", "10♠", "K♥", "J♣", "7♠", "10♥", "A♦",
                 "4♠", "7♥", "4♦", "A♣", "9♣", "J♠", "Q♦", "7♣", "Q♠", "10♦", "6♣", "A♥", "9♦"};
 
-        Button button = findViewById(R.id.newCardbtn);
-        final TextView textView = findViewById(R.id.textView);
+        button = findViewById(R.id.newCardbtn);
+        textView = findViewById(R.id.textView);
 
-        textView.setText(tamariz[i]);
-            button.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    Intent intentMain = new Intent(StudyActivity.this, MainActivity.class);
-                    i++;
-                    if(i > 51){
-                        startActivity(intentMain);
-                    }
+
+        if(i == 0){
+            textView.setText(tamariz[i]);
+        }
+
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                i++;
+                if(i == 51){
                     textView.setText(tamariz[i]);
+                    button.setText("Main Menu");
+
+                } else if(i < 52){
+
+                    textView.setText(tamariz[i]);
+                } else {
+                    Intent intentMenu = new Intent(StudyActivity.this, MainActivity.class);
+                    startActivity(intentMenu);
                 }
-            });
+            }
+        });
     }
 }

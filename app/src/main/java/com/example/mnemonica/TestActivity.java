@@ -20,6 +20,7 @@ public class TestActivity extends AppCompatActivity {
     //global variables
     Button button;
     EditText edit;
+    TextView displayText;
     int textInt;
     int random1;
     int random2;
@@ -32,7 +33,7 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        final TextView displayText = findViewById(R.id.displayText);
+        displayText = findViewById(R.id.displayText);
         //tamariz stack array
         String[] tamariz = {"4♣", "2♥", "7♦", "3♣", "4♥", "6♦", "A♠", "5♥", "9♠", "2♠", "Q♥", "3♦", "Q♣",
                             "8♥", "6♠", "5♠", "9♥", "K♣", "2♦", "J♥", "3♠", "8♠", "6♥", "10♣", "5♦", "K♦",
@@ -89,28 +90,30 @@ public class TestActivity extends AppCompatActivity {
             Random rand2 = new Random();
             @Override
             public void onClick(View v) {
+                totalCount++;
                 if(totalCount == 52){
                     Intent intentResult = new Intent(TestActivity.this, ResultActivity.class);
                     int value = count;
                     intentResult.putExtra("val", value);
                     startActivity(intentResult);
+                } else if(totalCount < 52){
+                    String text = edit.getText().toString();
+                    textInt = Integer.parseInt(text);
+
+                    random2 = rand2.nextInt(stack.size());
+                    displayText.setText(stack.get(random2));
+
+
+                    stack.remove(random2);
+                    position.remove(random2);
+
+                    if (textInt == random1+1 || textInt == random2+1){
+                        count += 1;
+                    }
+                    edit.getText().clear();
+                    button.setEnabled(false);
+
                 }
-                String text = edit.getText().toString();
-                textInt = Integer.parseInt(text);
-
-                random2 = rand2.nextInt(stack.size());
-                displayText.setText(stack.get(random2));
-
-                stack.remove(random2);
-                position.remove(random2);
-
-                if (textInt == random1+1 || textInt == random2+1){
-                    count += 1;
-                }
-                edit.getText().clear();
-                button.setEnabled(false);
-                totalCount +=1;
-
             }
         });
     }
