@@ -8,4 +8,4 @@ Clone this repository into Android Studio then build and run the app on your pho
 
 ## Author
 
-* **Haran Lakha** - [GitHub](https://github.com/Haran43) - [Twitter](https://twitter.com/haranlakha)
+* **Haran Lakha** - [GitHub](https://github.com/haranlakha) - [Twitter](https://twitter.com/haranlakha)
