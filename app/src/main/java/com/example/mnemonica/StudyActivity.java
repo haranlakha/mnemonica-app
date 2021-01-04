@@ -1,21 +1,21 @@
 package com.example.mnemonica;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-
 public class StudyActivity extends AppCompatActivity {
+
+    int count = 0;
     Button button;
     TextView textView;
-    public static int i = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        i = 0;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study);
 
@@ -27,24 +27,19 @@ public class StudyActivity extends AppCompatActivity {
         button = findViewById(R.id.newCardbtn);
         textView = findViewById(R.id.textView);
 
-
-        if(i == 0){
-            textView.setText(tamariz[i]);
-        }
+        textView.setText(tamariz[count]);
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                i++;
-                if(i == 51){
-                    textView.setText(tamariz[i]);
+                count++;
+                if(count == 51){
+                    textView.setText(tamariz[count]);
                     button.setText("Main Menu");
-
-                } else if(i < 52){
-
-                    textView.setText(tamariz[i]);
-                } else {
+                } else if(count == 52){
                     Intent intentMenu = new Intent(StudyActivity.this, MainActivity.class);
                     startActivity(intentMenu);
+                } else {
+                    textView.setText(tamariz[count]);
                 }
             }
         });

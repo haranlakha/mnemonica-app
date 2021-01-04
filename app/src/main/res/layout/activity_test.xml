@@ -10,11 +10,11 @@
         android:id="@+id/InputText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="343dp"
-        android:layout_marginBottom="171dp"
+        android:layout_marginTop="450dp"
+        android:layout_marginBottom="200dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="Position"
+        android:hint="@string/position"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,20 +22,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.523"
-        />
+        android:autofillHints="" />
 
     <TextView
         android:id="@+id/displayText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="450dp"
         android:textSize="64sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnEnterText"
@@ -43,11 +43,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="281dp"
         android:layout_marginLeft="281dp"
-        android:layout_marginTop="433dp"
+        android:layout_marginTop="450dp"
+        android:layout_marginBottom="200dp"
         android:layout_marginEnd="42dp"
         android:layout_marginRight="42dp"
-        android:layout_marginBottom="250dp"
-        android:text="Enter"
+        android:text="@string/enter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

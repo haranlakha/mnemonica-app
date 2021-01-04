@@ -17,10 +17,8 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result);
 
         Bundle extras = getIntent().getExtras();
-        int value = 0;
-        if (extras != null) {
-            value = extras.getInt("val");
-        }
+
+        int value = extras.getInt("val");
 
         TextView correctResult = findViewById(R.id.correctResultTextView);
         correctResult.setTextColor(Color.parseColor("#008000"));

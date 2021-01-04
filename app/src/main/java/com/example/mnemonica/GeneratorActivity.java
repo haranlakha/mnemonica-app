@@ -14,6 +14,13 @@ import java.util.Random;
 
 public class GeneratorActivity extends AppCompatActivity {
 
+    TextView textview;
+    Button button;
+    Random rng1;
+    Random rng2;
+    int random1;
+    int random2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,20 +30,19 @@ public class GeneratorActivity extends AppCompatActivity {
                 "8♥", "6♠", "5♠", "9♥", "K♣", "2♦", "J♥", "3♠", "8♠", "6♥", "10♣", "5♦", "K♦",
                 "2♣", "3♥", "8♦", "5♣", "K♠", "J♦", "8♣", "10♠", "K♥", "J♣", "7♠", "10♥", "A♦",
                 "4♠", "7♥", "4♦", "A♣", "9♣", "J♠", "Q♦", "7♣", "Q♠", "10♦", "6♣", "A♥", "9♦"};
+
         final List<String> stack = Arrays.asList(tamariz);
-        final TextView txtCard = findViewById(R.id.textCard);
-        final TextView txtNum = findViewById(R.id.textNum);
-        final Button button1 = findViewById(R.id.RandomButton);
 
+        textview = findViewById(R.id.textCard);
+        button = findViewById(R.id.RandomButton);
 
-        button1.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Random rand = new Random();
-                Random rand2 = new Random();
-                int randomNum1 = rand.nextInt(stack.size());
-                int randomNum2 = rand2.nextInt(stack.size());
-                txtCard.setText(stack.get(randomNum1));
-                txtNum.setText(Integer.toString(randomNum2+1));
+                rng1 = new Random();
+                rng2 = new Random();
+                random1 = rng1.nextInt(stack.size());
+                random2 = rng2.nextInt(stack.size());
+                textview.setText(stack.get(random1) + "    " + Integer.toString(random2 + 1));
             }
         });
 

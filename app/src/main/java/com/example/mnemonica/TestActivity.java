@@ -1,7 +1,5 @@
 package com.example.mnemonica;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,22 +8,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
 public class TestActivity extends AppCompatActivity {
-    //global variables
+
     Button button;
     EditText edit;
     TextView displayText;
-    int textInt;
-    int random1;
-    int random2;
+    String inputString;
+    Intent intentResult;
+
+    int correctCount = 0;
     int count = 0;
-    int totalCount = 0;
+    int inputInt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,36 +33,27 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         displayText = findViewById(R.id.displayText);
-        //tamariz stack array
-        String[] tamariz = {"4♣", "2♥", "7♦", "3♣", "4♥", "6♦", "A♠", "5♥", "9♠", "2♠", "Q♥", "3♦", "Q♣",
-                            "8♥", "6♠", "5♠", "9♥", "K♣", "2♦", "J♥", "3♠", "8♠", "6♥", "10♣", "5♦", "K♦",
-                            "2♣", "3♥", "8♦", "5♣", "K♠", "J♦", "8♣", "10♠", "K♥", "J♣", "7♠", "10♥", "A♦",
-                            "4♠", "7♥", "4♦", "A♣", "9♣", "J♠", "Q♦", "7♣", "Q♠", "10♦", "6♣", "A♥", "9♦"};
-        final List<String> stack = new LinkedList<>(Arrays.asList(tamariz));
-
-        int[] numbers = new int[52];
-        //filling the numbers array
-        for(int i = 0; i < numbers.length; i++){
-            numbers[i] = i+1;
-        }
-
-        final ArrayList<Integer> position =new ArrayList<Integer>();
-
-        for (int j = 0; j <= numbers.length; j++){
-            position.add(j);
-        }
-
-        Random rand = new Random();
-        random1 = rand.nextInt(stack.size());
-        displayText.setText(stack.get(random1));
-        stack.remove(random1);
-        position.remove(random1);
-
         edit = findViewById(R.id.InputText);
         button = findViewById(R.id.btnEnterText);
 
+        //tamariz stack array
+        String[] tamariz = {"4♣", "2♥", "7♦", "3♣", "4♥", "6♦", "A♠", "5♥", "9♠", "2♠", "Q♥", "3♦", "Q♣",
+                "8♥", "6♠", "5♠", "9♥", "K♣", "2♦", "J♥", "3♠", "8♠", "6♥", "10♣", "5♦", "K♦",
+                "2♣", "3♥", "8♦", "5♣", "K♠", "J♦", "8♣", "10♠", "K♥", "J♣", "7♠", "10♥", "A♦",
+                "4♠", "7♥", "4♦", "A♣", "9♣", "J♠", "Q♦", "7♣", "Q♠", "10♦", "6♣", "A♥", "9♦"};
+
+        final List<String> stack = new LinkedList<>(Arrays.asList(tamariz));
+
+        final ArrayList<Integer> position =new ArrayList<Integer>();
+
+        for (int j = 0; j <= 52; j++){
+            position.add(j+1);
+        }
+
         button.setEnabled(false);
         edit.setError("Cannot be empty");
+
+        displayText.setText(stack.get(count));
 
         edit.addTextChangedListener(new TextWatcher() {
 
@@ -87,36 +77,35 @@ public class TestActivity extends AppCompatActivity {
         });
 
         button.setOnClickListener(new View.OnClickListener() {
-            Random rand2 = new Random();
+            //if user inputs correct position of card +1 to count
             @Override
             public void onClick(View v) {
-                totalCount++;
-                if(totalCount == 52){
-                    Intent intentResult = new Intent(TestActivity.this, ResultActivity.class);
-                    int value = count;
-                    intentResult.putExtra("val", value);
+                /*
+                get input from edittext. if it is equal to random+1 increment count
+                then generate new random number from stack size.
+                display new card. remove card from stack.
+
+                keep a count. if it gets to 52 go to results page
+                */
+                count++;
+
+                inputString = edit.getText().toString();
+                inputInt = Integer.parseInt(inputString);
+
+                if(inputInt == position.get(count)-1){
+                    correctCount++;
+                }
+
+                edit.getText().clear();
+
+                if(count > 51){
+                    intentResult = new Intent(TestActivity.this, ResultActivity.class);
+                    intentResult.putExtra("val", correctCount);
                     startActivity(intentResult);
-                } else if(totalCount < 52){
-                    String text = edit.getText().toString();
-                    textInt = Integer.parseInt(text);
-
-                    random2 = rand2.nextInt(stack.size());
-                    displayText.setText(stack.get(random2));
-
-
-                    stack.remove(random2);
-                    position.remove(random2);
-
-                    if (textInt == random1+1 || textInt == random2+1){
-                        count += 1;
-                    }
-                    edit.getText().clear();
-                    button.setEnabled(false);
-
+                }else{
+                    displayText.setText(stack.get(count));
                 }
             }
         });
     }
-
 }
-
