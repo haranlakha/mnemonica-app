@@ -11,8 +11,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -21,10 +23,14 @@ public class TestActivity extends AppCompatActivity {
     TextView displayText;
     String inputString;
     Intent intentResult;
+    Random rng;
 
     int correctCount = 0;
     int count = 0;
     int inputInt;
+    int random;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +49,16 @@ public class TestActivity extends AppCompatActivity {
                 "4♠", "7♥", "4♦", "A♣", "9♣", "J♠", "Q♦", "7♣", "Q♠", "10♦", "6♣", "A♥", "9♦"};
 
         final List<String> stack = new LinkedList<>(Arrays.asList(tamariz));
-
         final ArrayList<Integer> position =new ArrayList<Integer>();
 
-        for (int j = 0; j <= 52; j++){
+        for (int j = 0; j < 52; j++){
             position.add(j+1);
         }
 
+        long seed = System.nanoTime();
+
+        Collections.shuffle(stack, new Random(seed));
+        Collections.shuffle(position, new Random(seed));
         button.setEnabled(false);
         edit.setError("Cannot be empty");
 
@@ -87,21 +96,24 @@ public class TestActivity extends AppCompatActivity {
 
                 keep a count. if it gets to 52 go to results page
                 */
-                count++;
 
                 inputString = edit.getText().toString();
                 inputInt = Integer.parseInt(inputString);
 
-                if(inputInt == position.get(count)-1){
+                if(inputInt == position.get(count)){
                     correctCount++;
                 }
 
+                count++;
                 edit.getText().clear();
 
                 if(count > 51){
                     intentResult = new Intent(TestActivity.this, ResultActivity.class);
                     intentResult.putExtra("val", correctCount);
                     startActivity(intentResult);
+                }else if(count == 51){
+                    button.setText("Results");
+                    displayText.setText(stack.get(count));
                 }else{
                     displayText.setText(stack.get(count));
                 }
