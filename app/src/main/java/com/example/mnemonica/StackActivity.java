@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.Arrays;
 import java.util.List;
 
-public class StudyActivity extends AppCompatActivity {
+public class StackActivity extends AppCompatActivity {
 
     int count = 0;
     Button button;
@@ -22,7 +22,7 @@ public class StudyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_study);
+        setContentView(R.layout.activity_stack);
 
         String[] tamariz = {"4♣", "2♥", "7♦", "3♣", "4♥", "6♦", "A♠", "5♥", "9♠", "2♠", "Q♥", "3♦", "Q♣",
                 "8♥", "6♠", "5♠", "9♥", "K♣", "2♦", "J♥", "3♠", "8♠", "6♥", "10♣", "5♦", "K♦",
@@ -44,7 +44,7 @@ public class StudyActivity extends AppCompatActivity {
                     textView.setText(stack.get(count));
                     button.setText("Main Menu");
                 } else if(count == 52){
-                    Intent intentMenu = new Intent(StudyActivity.this, MainActivity.class);
+                    Intent intentMenu = new Intent(StackActivity.this, MainActivity.class);
                     startActivity(intentMenu);
                 } else {
                     textView.setText(stack.get(count));

@@ -2,6 +2,7 @@ package com.example.mnemonica;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,6 +38,7 @@ public class GeneratorActivity extends AppCompatActivity {
         button = findViewById(R.id.RandomButton);
 
         button.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             public void onClick(View v) {
                 rng1 = new Random();
                 rng2 = new Random();

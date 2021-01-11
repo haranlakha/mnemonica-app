@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
     public void goToStudyActivity (View view){
-        Intent intentStudy = new Intent (this, StudyActivity.class);
+        Intent intentStudy = new Intent (this, StackActivity.class);
         startActivity(intentStudy);
     }
     public void goToGenerator (View view){
