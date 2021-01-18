@@ -18,6 +18,7 @@ public class StackActivity extends AppCompatActivity {
     Button button;
     TextView textView;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -34,20 +35,20 @@ public class StackActivity extends AppCompatActivity {
         button = findViewById(R.id.newCardbtn);
         textView = findViewById(R.id.textView);
 
-        textView.setText(stack.get(count));
+        textView.setText((count+1) + "    " + stack.get(count));
 
         button.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             public void onClick(View v) {
                 count++;
                 if(count == 51){
-                    textView.setText(stack.get(count));
+                    textView.setText((count+1) + "    " + stack.get(count));
                     button.setText("Main Menu");
                 } else if(count == 52){
                     Intent intentMenu = new Intent(StackActivity.this, MainActivity.class);
                     startActivity(intentMenu);
                 } else {
-                    textView.setText(stack.get(count));
+                    textView.setText((count+1) + "    " + stack.get(count));
                 }
             }
         });
