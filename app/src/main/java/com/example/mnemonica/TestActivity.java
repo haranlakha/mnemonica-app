@@ -23,15 +23,11 @@ public class TestActivity extends AppCompatActivity {
     TextView displayText;
     String inputString;
     Intent intentResult;
-    Random rng;
 
     int correctCount = 0;
     int count = 0;
     int inputInt;
-    int random;
-
-
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -86,28 +82,26 @@ public class TestActivity extends AppCompatActivity {
         });
 
         button.setOnClickListener(new View.OnClickListener() {
-            //if user inputs correct position of card +1 to count
+
             @Override
             public void onClick(View v) {
-                /*
-                get input from edittext. if it is equal to random+1 increment count
-                then generate new random number from stack size.
-                display new card. remove card from stack.
-
-                keep a count. if it gets to 52 go to results page
-                */
 
                 inputString = edit.getText().toString();
                 inputInt = Integer.parseInt(inputString);
 
+                //if input is correct increment correctCount variable
                 if(inputInt == position.get(count)){
                     correctCount++;
+                    //output "correct" in textview
+                }else{
+                    //output "incorrect" in the textview
                 }
 
                 count++;
                 edit.getText().clear();
 
                 if(count > 51){
+
                     intentResult = new Intent(TestActivity.this, ResultActivity.class);
                     intentResult.putExtra("val", correctCount);
                     startActivity(intentResult);

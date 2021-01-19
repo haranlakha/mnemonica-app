@@ -1,14 +1,11 @@
 package com.example.mnemonica;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,7 +15,6 @@ public class StackActivity extends AppCompatActivity {
     Button button;
     TextView textView;
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -38,7 +34,6 @@ public class StackActivity extends AppCompatActivity {
         textView.setText((count+1) + "    " + stack.get(count));
 
         button.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
             public void onClick(View v) {
                 count++;
                 if(count == 51){

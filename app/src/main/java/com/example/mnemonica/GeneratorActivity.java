@@ -1,8 +1,6 @@
 package com.example.mnemonica;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,10 +15,9 @@ public class GeneratorActivity extends AppCompatActivity {
 
     TextView textview;
     Button button;
-    Random rng1;
-    Random rng2;
-    int random1;
-    int random2;
+    Random generator;
+    int randomNum1;
+    int randomNum2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +35,12 @@ public class GeneratorActivity extends AppCompatActivity {
         button = findViewById(R.id.RandomButton);
 
         button.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
+
             public void onClick(View v) {
-                rng1 = new Random();
-                rng2 = new Random();
-                random1 = rng1.nextInt(stack.size());
-                random2 = rng2.nextInt(stack.size());
-                textview.setText(stack.get(random1) + "    " + Integer.toString(random2 + 1));
+                generator = new Random();
+                randomNum1 = generator.nextInt(stack.size());
+                randomNum2 = generator.nextInt(stack.size());
+                textview.setText(stack.get(randomNum1) + "    " + Integer.toString(randomNum2 + 1));
             }
         });
 
