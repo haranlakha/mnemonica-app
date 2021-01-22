@@ -1,13 +1,17 @@
 package com.example.mnemonica;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,6 +42,7 @@ public class TestActivity extends AppCompatActivity {
         edit = findViewById(R.id.InputText);
         button = findViewById(R.id.btnEnterText);
 
+
         //tamariz stack array
         String[] tamariz = {"4♣", "2♥", "7♦", "3♣", "4♥", "6♦", "A♠", "5♥", "9♠", "2♠", "Q♥", "3♦", "Q♣",
                 "8♥", "6♠", "5♠", "9♥", "K♣", "2♦", "J♥", "3♠", "8♠", "6♥", "10♣", "5♦", "K♦",
@@ -52,6 +57,9 @@ public class TestActivity extends AppCompatActivity {
         }
 
         long seed = System.nanoTime();
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
         Collections.shuffle(stack, new Random(seed));
         Collections.shuffle(position, new Random(seed));
@@ -82,30 +90,34 @@ public class TestActivity extends AppCompatActivity {
         });
 
         button.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
 
                 inputString = edit.getText().toString();
                 inputInt = Integer.parseInt(inputString);
 
-                //if input is correct increment correctCount variable
                 if(inputInt == position.get(count)){
                     correctCount++;
-                    //output "correct" in textview
+                    //if input is correct
+                    builder.setMessage("Correct!    Count: " + correctCount);
+
                 }else{
-                    //output "incorrect" in the textview
+                    //if input is incorrect
+                    builder.setMessage("Incorrect!    Count: " + correctCount);
                 }
+                builder.show();
+                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
                 count++;
                 edit.getText().clear();
 
                 if(count > 51){
-
+                    //when end of list is reached go to results screen, passing in the number of correct guesses
                     intentResult = new Intent(TestActivity.this, ResultActivity.class);
                     intentResult.putExtra("val", correctCount);
                     startActivity(intentResult);
                 }else if(count == 51){
+                    //on last screen the button text is changed
                     button.setText("Results");
                     displayText.setText(stack.get(count));
                 }else{

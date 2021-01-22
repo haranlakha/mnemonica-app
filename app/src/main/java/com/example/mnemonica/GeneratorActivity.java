@@ -35,7 +35,6 @@ public class GeneratorActivity extends AppCompatActivity {
         button = findViewById(R.id.RandomButton);
 
         button.setOnClickListener(new View.OnClickListener() {
-
             public void onClick(View v) {
                 generator = new Random();
                 randomNum1 = generator.nextInt(stack.size());
@@ -43,6 +42,5 @@ public class GeneratorActivity extends AppCompatActivity {
                 textview.setText(stack.get(randomNum1) + "    " + Integer.toString(randomNum2 + 1));
             }
         });
-
     }
 }

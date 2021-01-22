@@ -23,5 +23,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intentTest = new Intent (this, TestActivity.class);
         startActivity(intentTest);
     }
-
 }

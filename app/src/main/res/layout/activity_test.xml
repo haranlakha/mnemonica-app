@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="450dp"
         android:layout_marginBottom="200dp"
+        android:autofillHints=""
         android:ems="10"
         android:gravity="center"
         android:hint="@string/position"
@@ -21,8 +22,7 @@
         app:layout_constraintHorizontal_bias="0.278"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.523"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="0.523" />
 
     <TextView
         android:id="@+id/displayText"
@@ -44,9 +44,9 @@
         android:layout_marginStart="281dp"
         android:layout_marginLeft="281dp"
         android:layout_marginTop="450dp"
-        android:layout_marginBottom="200dp"
         android:layout_marginEnd="42dp"
         android:layout_marginRight="42dp"
+        android:layout_marginBottom="200dp"
         android:text="@string/enter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

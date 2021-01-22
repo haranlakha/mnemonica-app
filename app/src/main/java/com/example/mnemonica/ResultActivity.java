@@ -36,6 +36,5 @@ public class ResultActivity extends AppCompatActivity {
                 startActivity(resultMenu);
             }
         });
-
     }
 }
