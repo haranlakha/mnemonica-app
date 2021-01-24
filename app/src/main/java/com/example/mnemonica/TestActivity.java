@@ -76,29 +76,26 @@ public class TestActivity extends AppCompatActivity {
 
         displayText.setText(stack.get(count));
 
+        edit.addTextChangedListener(new TextWatcher() {
 
-            edit.addTextChangedListener(new TextWatcher() {
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    if (s.toString().trim().length() == 0 && checkResults){
-                        edit.setError("Cannot be empty");
-                        button.setEnabled(false);
-                    } else {
-                        button.setEnabled(true);
-                    }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.toString().trim().length() == 0){
+                    edit.setError("Cannot be empty");
+                    button.setEnabled(false);
+                } else {
+                    button.setEnabled(true);
                 }
+            }
 
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
-                @Override
-                public void afterTextChanged(Editable s) {
-                }
-            });
-
-
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
