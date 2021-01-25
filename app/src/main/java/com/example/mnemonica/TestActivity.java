@@ -66,6 +66,7 @@ public class TestActivity extends AppCompatActivity {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(this); //dialog for correct/incorrect guesses
         final AlertDialog.Builder results = new AlertDialog.Builder(this); //dialog for showing results to user
+        results.setCancelable(false);
 
         final InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
