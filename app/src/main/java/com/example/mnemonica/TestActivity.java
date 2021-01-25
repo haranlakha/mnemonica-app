@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -22,12 +21,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import static java.security.AccessController.getContext;
-
 public class TestActivity extends AppCompatActivity {
 
     Button button;
-    EditText edit;
+    EditText input;
     TextView displayText;
     String inputString;
     Intent intentResult;
@@ -45,7 +42,7 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         displayText = findViewById(R.id.displayText);
-        edit = findViewById(R.id.InputText);
+        input = findViewById(R.id.InputText);
         button = findViewById(R.id.btnEnterText);
 
 
@@ -64,25 +61,25 @@ public class TestActivity extends AppCompatActivity {
 
         long seed = System.nanoTime();
 
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this); //dialog for correct/incorrect guesses
+        final InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        final AlertDialog.Builder dialog = new AlertDialog.Builder(this); //dialog for correct/incorrect guesses
         final AlertDialog.Builder results = new AlertDialog.Builder(this); //dialog for showing results to user
         results.setCancelable(false);
 
-        final InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-
         Collections.shuffle(stack, new Random(seed));
         Collections.shuffle(position, new Random(seed));
+
         button.setEnabled(false);
-        edit.setError("Cannot be empty");
+        input.setError("Cannot be empty");
 
         displayText.setText(stack.get(count));
 
-        edit.addTextChangedListener(new TextWatcher() {
+        input.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.toString().trim().length() == 0){
-                    edit.setError("Cannot be empty");
+                    input.setError("Cannot be empty");
                     button.setEnabled(false);
                 } else {
                     button.setEnabled(true);
@@ -103,34 +100,32 @@ public class TestActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(!checkResults){
-                    inputString = edit.getText().toString();
+                    inputString = input.getText().toString();
                     inputInt = Integer.parseInt(inputString);
 
                     if(inputInt == position.get(count)){
                         correctCount++; //increment correct count
                         //if input is correct
-                        builder.setMessage("Correct!");
+                        dialog.setMessage("Correct!");
 
                     }else{
                         //if input is incorrect
-                        builder.setMessage("Incorrect!");
+                        dialog.setMessage("Incorrect!");
                     }
-                    builder.show();
-                    inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    dialog.show();
                 }
 
-
                 count++;
-                edit.getText().clear();
+                input.getText().clear();
 
                 if(count > 51){
-                    //when end of list is reached go to results screen, passing in the number of correct guesses
-
+                    inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    button.setVisibility(View.INVISIBLE);
+                    displayText.setVisibility(View.INVISIBLE);
+                    input.setVisibility(View.INVISIBLE);
                     intentResult = new Intent(TestActivity.this, MainActivity.class);
 
-                    if(!checkResults){
-                        results.setMessage("Correct: " + correctCount + "\nIncorrect: " + (52 - correctCount));
-                    }
+                    results.setMessage("Correct: " + correctCount + "\nIncorrect: " + (52 - correctCount));
                     results.setPositiveButton(
                         "Menu",
                         new DialogInterface.OnClickListener() {
@@ -139,7 +134,6 @@ public class TestActivity extends AppCompatActivity {
                             }
                         }
                     );
-
                     results.show();
                     checkResults = true;
 
