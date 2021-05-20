@@ -1,7 +1,17 @@
 # Mnemonica Training App
 
-This a Mnemonica training app to help you memorise the stack.
+Basic Mnemonica training app for magicians.
 
-# Building the application
+## Installation
 
-Clone this repository into Android Studio then build and run the app on your phone.
+```
+git clone https://github.com/haranlakha/mnemonica-app.git
+```
+
+## Compile code
+
+Build the application in [Android Studio](https://developer.android.com/studio/).
+
+## Run code
+
+Run the application on your mobile or virtual device.
