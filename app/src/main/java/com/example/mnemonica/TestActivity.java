@@ -6,13 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
@@ -31,13 +29,18 @@ public class TestActivity extends AppCompatActivity {
     Intent intentResult;
 
     int correctCount = 0;
-    int incorrectCount = 0; //used for debug purposes
-
+    int incorrectCount = 0;
     int count = 0;
     int inputInt = 0;
 
     boolean checkResults = false;
-    
+
+    final ArrayList<Integer> position = new ArrayList<>();
+    final List<String> correctGuess = new LinkedList<>();
+    final List<String> incorrectGuess = new LinkedList<>();
+
+    long seed = System.nanoTime();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -55,23 +58,17 @@ public class TestActivity extends AppCompatActivity {
                 "4♠", "7♥", "4♦", "A♣", "9♣", "J♠", "Q♦", "7♣", "Q♠", "10♦", "6♣", "A♥", "9♦"};
 
         final List<String> stack = new LinkedList<>(Arrays.asList(tamariz));
-        final ArrayList<Integer> position =new ArrayList<Integer>();
 
         for (int j = 0; j < 52; j++){
             position.add(j+1);
         }
 
-        final List<String> correctGuess = new LinkedList<>(); //list to hold correct guesses
-        final List<String> incorrectGuess = new LinkedList<>(); //list to hold incorrect guesses
-
-        long seed = System.nanoTime();
-
         final InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        final AlertDialog.Builder dialog = new AlertDialog.Builder(this); //dialog for correct/incorrect guesses
-        final AlertDialog.Builder results = new AlertDialog.Builder(this); //dialog for showing results to user
-        results.setCancelable(false);
+        final AlertDialog.Builder guessesDialog = new AlertDialog.Builder(this);
+        final AlertDialog.Builder resultsDialog = new AlertDialog.Builder(this);
 
-        //randomize both arrays the same so they the position matches the card still
+        resultsDialog.setCancelable(false);
+
         Collections.shuffle(stack, new Random(seed));
         Collections.shuffle(position, new Random(seed));
 
@@ -109,22 +106,18 @@ public class TestActivity extends AppCompatActivity {
                     inputString = input.getText().toString();
                     inputInt = Integer.parseInt(inputString);
 
+                    //input is correct
                     if(inputInt == position.get(count)){
-
-                        //if input is correct output corresponding message to user
-                        dialog.setMessage("Correct!");
-                        correctGuess.add(stack.get(count)); //add correct card to list
-                        Log.d("correct guess", correctGuess.get(correctCount)); //log to console for debug
-                        correctCount++;//increment correct count
-
+                        guessesDialog.setMessage("Correct!");
+                        correctGuess.add(stack.get(count));
+                        correctCount++;
                     }else{
-                        //if input is incorrect output corresponding message to user
-                        dialog.setMessage("Incorrect!");
-                        incorrectGuess.add(stack.get(count)); //add incorrect card to list
-                        Log.d("incorrect guess", incorrectGuess.get(incorrectCount)); //log to console for debug
+                        //input is incorrect
+                        guessesDialog.setMessage("Incorrect!");
+                        incorrectGuess.add(stack.get(count));
                         incorrectCount++;
                     }
-                    dialog.show();
+                    guessesDialog.show();
                 }
 
                 count++;
@@ -137,12 +130,12 @@ public class TestActivity extends AppCompatActivity {
                     input.setVisibility(View.INVISIBLE);
                     intentResult = new Intent(TestActivity.this, MainActivity.class);
 
-                    results.setMessage("Correct: " + correctCount + "\nIncorrect: " + (52 - correctCount));
+                    resultsDialog.setMessage("Correct: " + correctCount + "\nIncorrect: " + (52 - correctCount));
                     for(int i = 0; i < correctGuess.size(); i++){
-                        results.setMessage(correctGuess.get(i) + "\n");
+                        resultsDialog.setMessage(correctGuess.get(i) + "\n");
                     }
 
-                    results.setPositiveButton(
+                    resultsDialog.setPositiveButton(
                         "Menu",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -150,7 +143,7 @@ public class TestActivity extends AppCompatActivity {
                             }
                         }
                     );
-                    results.show();
+                    resultsDialog.show();
                     checkResults = true;
 
                 }else if(count == 51){
