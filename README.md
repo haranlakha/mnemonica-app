@@ -1,6 +1,6 @@
 # Mnemonica Training App
 
-Basic Mnemonica training app for magicians.
+Mnemonica stack training app.
 
 ## Installation
 
@@ -15,3 +15,7 @@ Build the application in [Android Studio](https://developer.android.com/studio/)
 ## Run code
 
 Run the application on your mobile or virtual device.
+
+## Installing from release apk
+
+If that is too much hassle for you, you can simply download the latest release apk to your android phone!
