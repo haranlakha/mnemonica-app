@@ -18,4 +18,4 @@ Run the application on your mobile or virtual device.
 
 ## Installing from release apk
 
-If that is too much hassle for you, you can simply download the latest release apk to your android phone!
+You can also download the latest release apk to your android phone.
